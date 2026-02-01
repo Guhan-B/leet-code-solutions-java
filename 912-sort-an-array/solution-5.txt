@@ -1,0 +1,46 @@
+/**
+ * Quick Sort
+ *
+ * Time Complexity  : O(nlogn) [Average Case], O(n^2) [Worst Case]
+ * Space Complexity : O(n)
+ */
+class Solution {
+    public int[] sortArray(int[] numbers) {
+        sort(numbers, 0, numbers.length - 1);
+        return numbers;
+    }
+
+    private void swap(int[] array, int i, int j) {
+        int value = array[i];
+        array[i] = array[j];
+        array[j] = value;
+    }
+
+    private int partiton(int[] numbers, int start, int end) {
+        int pivot = numbers[end];
+
+        int i = -1, j = 0;
+
+        while (j < end) {
+            if (numbers[j] <= pivot) {
+                i++;
+                swap(numbers, i , j);
+            }
+
+            j++;
+        }
+
+        swap(numbers, i + 1, end);
+
+        return i + 1;
+    }
+
+    private void sort(int[] numbers, int start, int end) {
+        if (start < end) {
+            int i = partiton(numbers, start, end);
+
+            sort(numbers, start, i - 1);
+            sort(numbers, i + 1, end);
+        }
+    }
+}

@@ -1,0 +1,26 @@
+/**
+ * Insertion Sort
+ *
+ * Time Complexity  : O(n^2)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    // Insertion Sort
+    public int[] sortArray(int[] numbers) {
+        int n = numbers.length;
+
+        for (int i = 1 ; i < n; i++) {
+            int current = numbers[i];
+            int  j = i - 1;
+
+            while (j >= 0 && (numbers[j] > current)) {
+                numbers[j + 1] = numbers[j];
+                j -= 1;
+            }
+
+            numbers[j + 1] = current;
+        }
+
+        return numbers;
+    }
+}

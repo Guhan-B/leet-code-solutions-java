@@ -1,0 +1,12 @@
+/**
+ * Java Build-In Sort Method
+ *
+ * Time Complexity  : O(nlogn)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public int[] sortArray(int[] numbers) {
+        Arrays.sort(numbers); // Arrays.parallelSort(numbers);
+        return numbers;
+    }
+}

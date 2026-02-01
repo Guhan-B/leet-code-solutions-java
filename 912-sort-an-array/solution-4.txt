@@ -1,0 +1,63 @@
+/**
+ * Merge Sort
+ *
+ * Time Complexity  : O(nlogn)
+ * Space Complexity : O(n)
+ */
+class Solution {
+    public int[] sortArray(int[] numbers) {
+        return sort(numbers, numbers.length);
+    }
+
+    private int[] sort(int[] numbers, int length) {
+        if (length == 1) {
+            return numbers;
+        }
+
+        int pivot = length / 2;
+
+        int leftPartitonLength = pivot;
+        int rightPartitonLength = length - pivot;
+
+        int[] leftPartiton = new int[pivot];
+        int[] rightPartiton = new int[length - pivot];
+
+        for (int i = 0, j = 0; i < pivot; i++, j++) {
+            leftPartiton[j] = numbers[i];
+        }
+
+        for (int i = pivot, j =0; i < length; i++, j++) {
+            rightPartiton[j] = numbers[i];
+        }
+
+        leftPartiton = sort(leftPartiton, leftPartitonLength);
+        rightPartiton = sort(rightPartiton, rightPartitonLength);
+
+        return merge(leftPartiton, rightPartiton, leftPartitonLength, rightPartitonLength);
+    }
+
+    private int[] merge(int[] leftPartiton, int[] rightPartiton, int leftPartitonLength, int rightPartitonLength) {
+        int[] merged = new int[leftPartitonLength + rightPartitonLength];
+
+        int i = 0, j = 0, k = 0;
+
+        while (i < leftPartitonLength && j < rightPartitonLength) {
+            if (leftPartiton[i] <= rightPartiton[j]) {
+                merged[k++] = leftPartiton[i++];
+            }
+            else {
+                merged[k++] = rightPartiton[j++];
+            }
+        }
+
+        while (i < leftPartitonLength) {
+            merged[k++] = leftPartiton[i++];
+        }
+
+        while (j < rightPartitonLength) {
+            merged[k++] = rightPartiton[j++];
+        }
+
+        return merged;
+    }
+}
