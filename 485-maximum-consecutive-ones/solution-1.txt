@@ -1,0 +1,23 @@
+/**
+ * Optimal Solution - (Array Traversal)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public int findMaxConsecutiveOnes(int[] numbers) {
+        int max = 0, count = 0;
+
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] == 1) {
+                count++;
+            }
+            else {
+                max = count > max ? count : max;
+                count = 0;
+            }
+        }
+
+        return count > max ? count : max;
+    }
+}

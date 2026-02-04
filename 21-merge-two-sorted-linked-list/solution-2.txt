@@ -1,0 +1,55 @@
+/**
+ * Optimal Solution - (Two Pointer + In-Place)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode a, ListNode b) {
+        if (a == null && b == null) {
+            return null;
+        }
+
+        if (a == null) {
+            return b;
+        }
+
+        if (b == null) {
+            return a;
+        }
+
+        ListNode head = null;
+
+        if (a.val < b.val) {
+            head = a;
+            merge(a, b);
+        }
+        else {
+            head = b;
+            merge(b, a);
+        }
+
+        return head;
+    }
+
+    public void merge(ListNode a, ListNode b) {
+        ListNode previous = null;
+
+        while (a != null && b != null) {
+            if (a.val <= b.val) {
+                previous = a;
+                a = a.next;
+            }
+            else {
+                previous.next = b;
+                b = b.next;
+                previous.next.next = a;
+                previous = previous.next;
+            }
+        }
+
+        if (b != null) {
+            previous.next = b;
+        }
+    }
+}

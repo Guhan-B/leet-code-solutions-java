@@ -1,0 +1,18 @@
+/**
+ * Optimal Solution - (Two Pointer | Slow & Fast Pointer)
+ * Time Complexity  : O(n)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public int removeDuplicates(int[] numbers) {
+        int lastUniqueIndex = 0;
+
+        for (int i = 1; i < numbers.length; i++) {
+            if (numbers[i] != numbers[i - 1]) {
+                numbers[++lastUniqueIndex] = numbers[i];
+            }
+        }
+
+        return lastUniqueIndex + 1;
+    }
+}

@@ -1,0 +1,56 @@
+/**
+ * Better Solution - (Square & (Merge | Reverse))
+
+ * Time Complexity  : O(n)
+ * Space Complexity : O(n)
+ */
+class Solution {
+    public int[] sortedSquares(int[] numbers) {
+        int start = -1;
+        int n = numbers.length;
+
+        // Find the index of 1st positive element & Square the array elements
+        for (int i = 0; i < n; i++) {
+            if (start == -1 && numbers[i] >= 0) {
+                start = i;
+            }
+
+            numbers[i] *= numbers[i];
+        }
+
+        // The array contains only positive elements
+        if (start == 0) {
+            return numbers;
+        }
+
+        // The array contains only negative elements
+        if (start == -1) {
+            for (int i = 0, j = n -1; i < j; i++, j--) {
+                int swap = numbers[i];
+                numbers[i] = numbers[j];
+                numbers[j] = swap;
+            }
+
+            return numbers;
+        }
+
+
+        int[] sorted = new int[n];
+
+        int i = start - 1, j = start, k = 0;
+
+        while (i >= 0 && j < n) {
+            if (numbers[i] < numbers[j]) {
+                sorted[k++] = numbers[i--];
+            }
+            else {
+                sorted[k++] = numbers[j++];
+            }
+        }
+
+        while (i >= 0) sorted[k++] = numbers[i--];
+        while (j < n) sorted[k++] = numbers[j++];
+
+        return sorted;
+    }
+}

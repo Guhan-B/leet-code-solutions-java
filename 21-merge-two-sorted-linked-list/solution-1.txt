@@ -1,0 +1,86 @@
+/**
+ * Brute Force Solution - (Two Pointer + New Linked List)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(n)
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode a, ListNode b) {
+        if (a == null && b == null) {
+            return null;
+        }
+
+        if (a == null) {
+            return b;
+        }
+
+        if (b == null) {
+            return a;
+        }
+
+        ListNode c = null, head = null;
+        int val;
+
+        while (a != null && b != null) {
+            // Determine the next minimum node
+            if (a.val < b.val) {
+                val = a.val;
+                a = a.next;
+            }
+            else {
+                val = b.val;
+                b = b.next;
+            }
+
+            // Initilize the next new node in merged linked list
+            if (c == null) {
+                c = new ListNode();
+                head = c;
+            }
+            else {
+                c.next = new ListNode();
+                c = c.next;
+            }
+
+            // Update the new node fields
+            c.val = val;
+            c.next = null;
+        }
+
+        // Handle left over in list - a
+        while (a != null) {
+            if (c == null) {
+                c = new ListNode();
+                head = c;
+            }
+            else {
+                c.next = new ListNode();
+                c = c.next;
+            }
+
+            c.val = a.val;
+            c.next = null;
+
+            a = a.next;
+        }
+
+        // Handle left over in list - b
+        while (b != null) {
+            if (c == null) {
+                c = new ListNode();
+                head = c;
+            }
+            else {
+                c.next = new ListNode();
+                c = c.next;
+            }
+
+            c.val = b.val;
+            c.next = null;
+
+            b = b.next;
+        }
+
+        return head;
+    }
+}
