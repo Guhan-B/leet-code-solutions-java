@@ -1,5 +1,5 @@
 /**
- * Better Solution - (Two Pointer + In-Place)
+ * Optimal Solution - (Two Pointer)
  *
  * Time Complexity  : O(n)
  * Space Complexity : O(1)
@@ -18,38 +18,37 @@ class Solution {
             return a;
         }
 
-        ListNode head = null;
+        ListNode head, c;
 
-        if (a.val < b.val) {
-            head = a;
-            merge(a, b);
-        }
-        else {
-            head = b;
-            merge(b, a);
-        }
+        // Initilize head as dummy node
+        head = new ListNode();
+        head.val = 0;
+        head.next = null;
 
-        return head;
-    }
-
-    public void merge(ListNode a, ListNode b) {
-        ListNode previous = null;
+        c = head;
 
         while (a != null && b != null) {
             if (a.val <= b.val) {
-                previous = a;
+                c.next = a;
                 a = a.next;
             }
             else {
-                previous.next = b;
+                c.next = b;
                 b = b.next;
-                previous.next.next = a;
-                previous = previous.next;
             }
+
+            c = c.next;
+            c.next = null;
+        }
+
+        if (a != null) {
+            c.next = a;
         }
 
         if (b != null) {
-            previous.next = b;
+            c.next = b;
         }
+
+        return head.next;
     }
 }
