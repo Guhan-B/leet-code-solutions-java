@@ -1,0 +1,23 @@
+/**
+ * Better Solution - (Count & Replace)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public void sortColors(int[] numbers) {
+        int zeros = 0, ones = 0, twos = 0, i;
+
+        for (i = 0; i < numbers.length; i++) {
+            switch (numbers[i]) {
+                case 0: zeros++; break;
+                case 1: ones++;  break;
+                case 2: twos++;  break;
+            }
+        }
+
+        for (i = 0; i < zeros; i++) numbers[i] = 0;
+        for (i = zeros; i < (zeros + ones); i++) numbers[i] = 1;
+        for (i = (zeros + ones); i < numbers.length; i++) numbers[i] = 2;
+    }
+}

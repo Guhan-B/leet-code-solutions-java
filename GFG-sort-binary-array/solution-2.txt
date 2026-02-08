@@ -1,0 +1,16 @@
+/**
+ * Better Solution - (Count & Replace)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public void binarySort(int[] array) {
+        int count = 0, ones = 0, i, offset;
+
+        for (i = 0; i < array.length; i++) if (array[i] == 0) count++;
+
+        for (i = 0; i < count; i++) array[i] = 0;
+        for (i = count; i < array.length; i++) array[i] = 1;
+    }
+}

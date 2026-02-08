@@ -1,0 +1,47 @@
+/**
+ * Optimal Solution - (Two Pointer | Single Pass)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public void sortColors(int[] numbers) {
+        int i = 0, j = numbers.length - 1, k = 0, swap;
+
+        while (k < numbers.length) {
+            if (numbers[k] == 0) {
+                if ((numbers[i] == 0) && (i != (numbers.length - 1))) {
+                    i++;
+                    continue;
+                }
+                else {
+                    if (i < k) {
+                        swap = numbers[i];
+                        numbers[i] = numbers[k];
+                        numbers[k] = swap;
+                        i++;
+                    }
+                }
+            }
+
+            if (numbers[k] == 2) {
+                if ((numbers[j] == 2 && j != 0)) {
+                    j--;
+                    continue;
+                }
+                else {
+                    if (j > k) {
+                        swap = numbers[j];
+                        numbers[j] = numbers[k];
+                        numbers[k] = swap;
+                        j--;
+                    }
+                }
+            }
+
+            if ( (numbers[k] == 1) || ((k <= i) && (numbers[k] == 0)) || ((k >= j) && (numbers[k] == 2)) ) {
+                k++;
+            }
+        }
+    }
+}

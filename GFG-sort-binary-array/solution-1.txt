@@ -1,0 +1,11 @@
+/**
+ * Brute Force Solution - (Merge Sort)
+ *
+ * Time Complexity  : O(nlogn)
+ * Space Complexity : O(n)
+ */
+class Solution {
+    public void binarySort(int[] array) {
+        Arrays.sort(array);
+    }
+}
