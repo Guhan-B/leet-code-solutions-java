@@ -1,29 +1,21 @@
 /**
- * Optimal Solution - (Two Pointer | Single Pass)
+ * Optimal Solution - (Two Pointer | Slow & Fast Pointer | Single Pass)
  *
  * Time Complexity  : O(n)
  * Space Complexity : O(1)
  */
 class Solution {
     public void binarySort(int[] array) {
-        int i = 0, j = 0, swap;
+        int swap;
 
-        while (j < array.length && i < array.length) {
-            if (array[j] == 0) {
-                if (array[i] == 0) {
-                    i++;
-                    continue;
-                }
-                else {
-                    if (j > i) {
-                        array[i] = 0;
-                        array[j] = 1;
-                        i++;
-                    }
-                }
+        for (int i = 0, j = 0; i < array.length; i++) {
+            if (array[i] == 0) {
+                swap = array[i];
+                array[i] = array[j];
+                array[j] = swap;
+
+                j++;
             }
-
-            j++;
         }
     }
 }
