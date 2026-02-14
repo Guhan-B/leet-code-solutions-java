@@ -1,0 +1,40 @@
+/**
+ * Better Solution - (Hash Map)
+ *
+ * Time Complexity  : O(n^2)
+ * Space Complexity : O(n)
+ */
+class Solution {
+    public List<List<Integer>> threeSum(int[] numbers) {
+        Set<List<Integer>> results = new HashSet<>();
+        Map<Integer, Integer> map = new HashMap<>();
+
+        int n = numbers.length, target;
+
+        for (int i = 0; i < n; i++) {
+            target = -numbers[i];
+
+            map.clear();
+
+            for (int j = i + 1; j < n; j++) {
+                if (i != j) {
+                    if (map.containsKey(target - numbers[j])) {
+                        List<Integer> triplet = new ArrayList<>();
+
+                        triplet.add(numbers[i]);
+                        triplet.add(numbers[j]);
+                        triplet.add(target - numbers[j]);
+
+                        Collections.sort(triplet);
+
+                        results.add(triplet);
+                    }
+
+                    map.put(numbers[j], j);
+                }
+            }
+        }
+
+        return List.copyOf(results);
+    }
+}

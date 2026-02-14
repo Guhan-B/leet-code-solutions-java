@@ -1,0 +1,35 @@
+/**
+ * Better Solution - (Stacks)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(n)
+ */
+class Solution {
+    public boolean backspaceCompare(String a, String b) {
+        a = cleanString(a, a.length());
+        b = cleanString(b, b.length());
+
+        if (a.length() != b.length()) {
+            return false;
+        }
+
+        return a.equals(b);
+    }
+
+    private String cleanString(String s, int length) {
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < length; i++) {
+            if (s.charAt(i) != '#') {
+                builder.append(s.charAt(i));
+            }
+            else {
+                if (builder.length() > 0) {
+                    builder.deleteCharAt(builder.length() - 1);
+                }
+            }
+        }
+
+        return builder.toString();
+    }
+}

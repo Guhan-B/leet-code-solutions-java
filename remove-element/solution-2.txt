@@ -1,0 +1,17 @@
+/**
+ * Optimal Solution - (Two Pointers)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public int removeElement(int[] numbers, int value) {
+        int i = 0;
+
+        for (int j = 0; j < numbers.length; j++)
+            if (numbers[j] != value)
+                numbers[i++] = numbers[j];
+
+        return i;
+    }
+}

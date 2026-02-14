@@ -1,0 +1,57 @@
+/**
+ * Optimal Solution - (Two Pointer)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public boolean backspaceCompare(String a, String b) {
+        int i = a.length() - 1, j = b.length() - 1;
+        int skipI = 0, skipJ = 0;
+        int m = 0, n = 0;
+
+        while (i >= 0 || j >= 0) {
+            if (i >= 0 && a.charAt(i) == '#') {
+                skipI++;
+                i--;
+                continue;
+            }
+
+            if (j >= 0 && b.charAt(j) == '#') {
+                skipJ++;
+                j--;
+                continue;
+            }
+
+            if (skipI > 0) {
+                i--;
+                skipI--;
+                continue;
+            }
+
+            if (skipJ > 0) {
+                j--;
+                skipJ--;
+                continue;
+            }
+
+            if (i >= 0) {
+                m++;
+            }
+
+            if (j >= 0) {
+                n++;
+            }
+
+            if (i >= 0 && j >= 0 && a.charAt(i) != b.charAt(j)) {
+                return false;
+            }
+            else {
+                i--;
+                j--;
+            }
+        }
+
+        return m == n;
+    }
+}

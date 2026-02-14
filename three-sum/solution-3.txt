@@ -1,0 +1,53 @@
+/**
+ * Optimal Solution - (Two Pointers)
+ *
+ * Time Complexity  : O(n^2)
+ * Space Complexity : O(1)
+ */
+ class Solution {
+    public List<List<Integer>> threeSum(int[] numbers) {
+        Arrays.sort(numbers);
+
+        List<List<Integer>> results = new ArrayList<>();
+        int n = numbers.length, target, j, k;
+
+        for (int i = 0; i < n; i++) {
+            if ((i != 0) && (numbers[i] == numbers[i - 1])) {
+                continue;
+            }
+
+            target = -numbers[i];
+
+            j = i + 1;
+            k = n - 1;
+
+            while (j < k) {
+                int sum = numbers[i] + numbers[j] + numbers[k];
+
+                if (sum < 0) {
+                    j++;
+                }
+                else if (sum > 0) {
+                    k--;
+                }
+                else {
+                    List<Integer> triplet = new ArrayList<>();
+
+                    triplet.add(numbers[i]);
+                    triplet.add(numbers[j]);
+                    triplet.add(numbers[k]);
+
+                    results.add(triplet);
+
+                    j++;
+                    k--;
+
+                    while (j < k && numbers[j] == numbers[j - 1]) j++;
+                    while (j < k && numbers[k] == numbers[k + 1]) k--;
+                }
+            }
+        }
+
+        return results;
+    }
+}
