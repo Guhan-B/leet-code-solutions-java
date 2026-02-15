@@ -1,0 +1,44 @@
+/**
+ * Optimal Solution - (Two Pointers + Merge)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public static ArrayList<Integer> union(int a[], int b[]) {
+        ArrayList<Integer> merged = new ArrayList<>();
+
+        int i = 0, j = 0;
+
+        while (i < a.length && j < b.length) {
+            if (a[i] <= b[j]) {
+                merged.add(a[i++]);
+            }
+            else {
+                merged.add(b[j++]);
+            }
+
+            while (i < a.length && a[i] == merged.get(merged.size() - 1)) i++;
+            while (j < b.length && b[j] == merged.get(merged.size() - 1)) j++;
+        }
+
+        while (i < a.length) {
+            if (a[i] != merged.get(merged.size() - 1)) {
+                merged.add(a[i]);
+            }
+
+            i++;
+        }
+
+        while (j < b.length) {
+            if (b[j] != merged.get(merged.size() - 1)) {
+                merged.add(b[j]);
+            }
+
+            j++;
+        }
+
+        return merged;
+    }
+
+}

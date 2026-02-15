@@ -1,0 +1,17 @@
+/**
+ * Optimal Solution - (Array Traversal)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(n)
+ */
+class Solution {
+    public int[] getConcatenation(int[] numbers) {
+        int n = numbers.length, m = n * 2;
+        int[] concated = new int[m];
+
+        for (int i = 0; i < m; i++)
+            concated[i] = (i < n) ? numbers[i] : numbers[i - n];
+
+        return concated;
+    }
+}

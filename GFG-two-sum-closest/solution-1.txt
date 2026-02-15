@@ -1,0 +1,60 @@
+/**
+ * Optimal Solution - (Sorting + Two Pointers)
+ *
+ * Time Complexity  : O(nlogn)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public ArrayList<Integer> sumClosest(int[] numbers, int target) {
+        if (numbers.length <= 1) {
+            return new ArrayList<Integer>();
+        }
+
+        Arrays.sort(numbers);
+
+        int i = 0, j = numbers.length - 1, difference = Integer.MAX_VALUE, currentDifference, sum;
+
+        int[] pair = new int[2];
+
+        while (i < j) {
+            sum = numbers[i] + numbers[j];
+
+            currentDifference = Math.abs(target - sum);
+
+            if (currentDifference > difference) {
+                // Ignore (This case will not be reached)
+            }
+            else if (currentDifference < difference) {
+                difference = currentDifference;
+
+                pair[0] = numbers[i];
+                pair[1] = numbers[j];
+            }
+            else {
+                if ((numbers[j] - numbers[i]) > (pair[1] - pair[0])) {
+                    pair[0] = numbers[i];
+                    pair[1] = numbers[j];
+                }
+            }
+
+
+            if (sum < target) {
+                i++;
+            }
+            else if (sum > target) {
+                j--;
+            }
+            else {
+                i++;
+                j--;
+            }
+        }
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        list.add(pair[0]);
+        list.add(pair[1]);
+
+        return list;
+    }
+}

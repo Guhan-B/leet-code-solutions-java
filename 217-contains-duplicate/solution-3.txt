@@ -1,0 +1,19 @@
+/**
+ * Better Solution - (Hash Map)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(n)
+ */
+class Solution {
+    public boolean containsDuplicate(int[] numbers) {
+        Map<Integer, Boolean> seen = new HashMap<>();
+
+        for (int number : numbers)
+            if (seen.getOrDefault(number, false))
+                return true;
+            else
+                seen.put(number, true);
+
+        return false;
+    }
+}

@@ -1,0 +1,35 @@
+/**
+ * Optimal Solution - (Set)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(n)
+ */
+class Solution {
+    public int longestConsecutive(int[] numbers) {
+        if (numbers.length == 0 || numbers.length == 1) {
+            return numbers.length;
+        }
+
+        Set<Integer> set = new HashSet<>();
+
+        for (int number : numbers)
+            set.add(number);
+
+        int maximum = 1;
+
+        for (int value : set) {
+            if (!set.contains(value - 1)) {
+                int current = value, count = 1;
+
+                while (set.contains(current + 1)) {
+                    current += 1;
+                    count += 1;
+                }
+
+                maximum = Math.max(maximum, count);
+            }
+        }
+
+        return maximum;
+    }
+}

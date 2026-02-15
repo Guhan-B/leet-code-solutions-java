@@ -2,7 +2,7 @@
  * Brute Force Solution - (Merge Sort)
  *
  * Time Complexity  : O(nlogn)
- * Space Complexity : O(n)
+ * Space Complexity : O(1)
  */
 class Solution {
     public void sortColors(int[] numbers) {

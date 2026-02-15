@@ -1,0 +1,17 @@
+/**
+ * Better Solution - (Sorting)
+ *
+ * Time Complexity  : O(nlogn)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public boolean containsDuplicate(int[] numbers) {
+        Arrays.sort(numbers);
+
+        for (int i = 1; i < numbers.length; i++)
+            if (numbers[i] == numbers[i - 1])
+                return true;
+
+        return false;
+    }
+}

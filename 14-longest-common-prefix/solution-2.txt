@@ -1,0 +1,40 @@
+/**
+ * Better Solution - (Nested Loop)
+ *
+ * Time Complexity  : O(n^2)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public String longestCommonPrefix(String[] strings) {
+        if (strings.length == 0) return "";
+
+        if (strings.length == 1) return strings[0];
+
+        int maximumPrefixLength = Integer.MAX_VALUE;
+
+        for (String string : strings)
+            maximumPrefixLength = Math.min(maximumPrefixLength, string.length());
+
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < maximumPrefixLength; i++) {
+            boolean isSame = true;
+
+            for (int j = 1; j < strings.length; j++) {
+                if (strings[j - 1].charAt(i) != strings[j].charAt(i)) {
+                    isSame = false;
+                    break;
+                }
+            }
+
+            if (isSame) {
+                builder.append(strings[0].charAt(i));
+            }
+            else {
+                break;
+            }
+        }
+
+        return builder.toString();
+    }
+}

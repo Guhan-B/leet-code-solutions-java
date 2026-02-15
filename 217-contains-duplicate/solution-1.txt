@@ -1,0 +1,16 @@
+/**
+ * Better Solution - (Looping)
+ *
+ * Time Complexity  : O(n^2)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public boolean containsDuplicate(int[] numbers) {
+        for (int i = 0; i < numbers.length; i++)
+            for (int j = i + 1; j < numbers.length; j++)
+                if (numbers[i] == numbers[j])
+                    return true;
+
+        return false;
+    }
+}
