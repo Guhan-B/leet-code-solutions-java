@@ -1,0 +1,41 @@
+/**
+ * Optimal Solution (Hashing + Prefix Sum)
+ *
+ * Time Complexity  : O(n)
+ * Space Complexity : O(n)
+ *
+ * [a, b, c, d, e, f, g, h, target
+ *
+ * Prefix Sum
+ *
+ * a
+ * a + b
+ * a + b + c
+ * a + b + c + d
+ * a + b + c + d + e
+ * a + b + c + d + e + f
+ * a + b + c + d + e + f + g
+ * a + b + c + d + e + f + g + h
+ *
+ * Prefix Sum (Till g) (Fixed) - Prefix Sum (Till c) (Could be prefix sum till any index from a ... f) =  Sum From d to g (AKA Target)
+ *
+ * i.e SUM([a, b, c, d, e, f, g]) - SUM([a, b, c]) = SUM([d, e, f, g])
+ *
+ */
+class Solution {
+    public int subarraySum(int[] numbers, int target) {
+        Map<Integer, Integer> prefixSumCount = new HashMap<>();
+
+        prefixSumCount.put(0, 1);
+
+        int prefixSum = 0, count = 0;
+
+        for (int i = 0; i < numbers.length; i++) {
+            prefixSum += numbers[i];
+            count += prefixSumCount.getOrDefault(prefixSum - target, 0);
+            prefixSumCount.put(prefixSum, prefixSumCount.getOrDefault(prefixSum, 0) + 1);
+        }
+
+        return count;
+    }
+}
