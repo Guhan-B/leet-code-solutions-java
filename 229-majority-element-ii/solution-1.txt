@@ -1,0 +1,40 @@
+/**
+ * Brute Force Solution - (Sorting)
+ *
+ * Time Complexity  : O(nlogn)
+ * Space Complexity : O(1)
+ */
+class Solution {
+    public List<Integer> majorityElement(int[] numbers) {
+        List<Integer> results = new ArrayList<>();
+
+        if (numbers.length == 1) {
+            results.add(numbers[0]);
+            return results;
+        }
+
+        int majorityCount = (int) Math.floor(numbers.length / 3);
+        int count = 1;
+
+        Arrays.sort(numbers);
+
+        for (int i = 1; i < numbers.length; i++) {
+            if (numbers[i] == numbers[i - 1]) {
+                count++;
+            }
+            else {
+                if (count > majorityCount)
+                    results.add(numbers[i - 1]);
+
+                count = 1;
+            }
+
+            if (i == numbers.length - 1) {
+                if (count > majorityCount)
+                    results.add(numbers[i]);
+            }
+        }
+
+        return results;
+    }
+}

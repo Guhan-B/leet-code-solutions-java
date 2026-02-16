@@ -1,0 +1,32 @@
+/**
+ * Better Solution - (Hashing + Sorting)
+ *
+ * Time Complexity  : O(nlogn)
+ * Space Complexity : O(n)
+ */
+class Solution {
+    public int[] topKFrequent(int[] numbers, int k) {
+        Map<Integer, Integer> count = new HashMap<>();
+
+        for (int number : numbers) {
+            count.put(number, count.getOrDefault(number, 0) + 1);
+        }
+
+        List<Map.Entry<Integer, Integer>> entries = new ArrayList<>(count.entrySet());
+
+        Collections.sort(entries, new Comparator<Map.Entry<Integer, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Integer, Integer> a, Map.Entry<Integer, Integer> b) {
+                return (b.getValue()).compareTo(a.getValue());
+            }
+        });
+
+        int[] result = new int[k];
+
+        for (int i = 0; i < k; i++) {
+            result[i] = entries.get(i).getKey();
+        }
+
+        return result;
+    }
+}
